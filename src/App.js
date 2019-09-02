@@ -46,10 +46,10 @@ class App extends React.Component {
     })
   }
 
-  addToDo = task => {
+  addToDo = props => {
     this.setState({
       toDos: [...this.state.toDos, {
-        task: task,
+        task: props,
         id: Date.now(),
         completed: false
       }]
