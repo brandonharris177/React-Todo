@@ -7,13 +7,15 @@ class ToDoList extends React.Component {
 
 constructor(props) {
     super(props); //Difines this so we can use this.props
-    console.log(props)
+    // console.log(props)
   }
 
   render() {
     return (
       <>
-        {this.props.propsPassedToList.map(toDo => <Todo propsPassedToToDo={toDo}/>)}
+        {this.props.propsPassedToList.map(toDo => <Todo propsPassedToToDo={toDo}
+        completeTask = {this.props.completeTask}
+        />)}
       </>
     );
   }
