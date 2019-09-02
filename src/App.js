@@ -24,22 +24,32 @@ class App extends React.Component {
   constructor () {
     super ();
     this.state = {
-      toDos: toDoData
+      toDos: toDoData,
+      newToDo: ``
     };
   }
 
-  clearCompletedFunction = () => {
+  addToDo = props => {
     this.setState({
-      toDos: this.state.toDos.filter(todo => {
-        if (todo.completed) {
-          return false;
-        } else {
-          return true;
-        }
-      })
-    });
+      toDos: [...this.state.toDos, {
+        task: props,
+        id: Date.now(),
+        completed: false
+      }]
+    })
   }
- 
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.addToDo(this.state.toDoImput);
+  }
+
+  onChangeFunction = event => {
+    // console.log(this.state)
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+
   completeTask = (imputId) => {
     // console.log(this.completeTask, imputId)
     this.setState({ toDos: 
@@ -58,23 +68,25 @@ class App extends React.Component {
     })
   }
 
-  addToDo = props => {
+  clearCompletedFunction = () => {
     this.setState({
-      toDos: [...this.state.toDos, {
-        task: props,
-        id: Date.now(),
-        completed: false
-      }]
-    })
+      toDos: this.state.toDos.filter(todo => {
+        if (todo.completed) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+    });
   }
 
   render() {
     return (
       <>
-        <h2>Welcome to your Todo App!</h2>
+        <h2>To Do:</h2>
         <ToDoList propsPassedToList={this.state.toDos}
         completeTask = {this.completeTask}/> 
-        <ToDoForm addToDo = {this.addToDo} clearCompletedFunction = {this.clearCompletedFunction}/>
+        <ToDoForm addToDo = {this.addToDo} clearCompletedFunction = {this.clearCompletedFunction} onChangeFunction = {this.onChangeFunction} handleSubmit = {this.handleSubmit}/>
       </>
     );
   }

@@ -3,33 +3,25 @@ import React from 'react'
 class TodoForm extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            newToDo: ``
-        };
     }
 
-    onChangeFunction = event => {
-        // console.log(this.state)
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        this.props.addToDo(this.state.toDoImput);
-        this.setState({ toDoImput: ``}) //optional peice of code that clears the bar.
-    }
+    // clearImput = event => {
+    //     event.preventDefault();
+    //     this.setState({ newToDo: `` })
+    //   } //possibly could be used to clear imput feild but need to find out how to call it on submit
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.props.handleSubmit}>
                 <input 
                     type = "text" 
                     name= "toDoImput" 
-                    placeholder = "ToDo:" 
-                    onChange = {this.onChangeFunction} 
-                    value = {this.state.toDoImput}  />
+                    placeholder = "To Do:" 
+                    onChange = {this.props.onChangeFunction} 
+                    value = {this.props.toDoImput}  />
                 <button type = "submit">Submit</button>
                 <button onClick = {this.props.clearCompletedFunction}>Clear Completed</button>
+                {/* <button onClick = {this.clearImput}>Clear Text</button> */}
             </form>
         )
     }
