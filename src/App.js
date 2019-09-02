@@ -27,6 +27,18 @@ class App extends React.Component {
       toDos: toDoData
     };
   }
+
+  clearCompletedFunction = () => {
+    this.setState({
+      toDos: this.state.toDos.filter(todo => {
+        if (todo.completed) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+    });
+  }
  
   completeTask = (imputId) => {
     // console.log(this.completeTask, imputId)
@@ -62,7 +74,7 @@ class App extends React.Component {
         <h2>Welcome to your Todo App!</h2>
         <ToDoList propsPassedToList={this.state.toDos}
         completeTask = {this.completeTask}/> 
-        <ToDoForm addToDo = {this.addToDo}/>
+        <ToDoForm addToDo = {this.addToDo} clearCompletedFunction = {this.clearCompletedFunction}/>
       </>
     );
   }

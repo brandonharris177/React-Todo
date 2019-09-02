@@ -16,7 +16,7 @@ class TodoForm extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         this.props.addToDo(this.state.toDoImput);
-        this.setState({ newToDo: ``})
+        this.setState({ toDoImput: ``}) //optional peice of code that clears the bar.
     }
 
     render() {
@@ -29,6 +29,7 @@ class TodoForm extends React.Component {
                     onChange = {this.onChangeFunction} 
                     value = {this.state.toDoImput}  />
                 <button type = "submit">Submit</button>
+                <button onClick = {this.props.clearCompletedFunction}>Clear Completed</button>
             </form>
         )
     }
