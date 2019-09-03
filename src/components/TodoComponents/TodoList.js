@@ -13,7 +13,7 @@ constructor(props) {
   render() {
     return (
       <>
-        {this.props.propsPassedToList.map(toDo => <Todo propsPassedToToDo={toDo}
+        {this.props.propsPassedToList.map(toDo => <Todo key = {toDo.id} propsPassedToToDo={toDo}
         completeTask = {this.props.completeTask}
         />)}
       </>
